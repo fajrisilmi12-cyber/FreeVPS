@@ -23,6 +23,5 @@ jobs:
         LINUX_MACHINE_NAME: ${{ secrets.LINUX_MACHINE_NAME }}
         LINUX_USERNAME: ${{ secrets.LINUX_USERNAME }}
         GOOGLE_REMOTE_PIN: ${{ secrets.GOOGLE_REMOTE_PIN }}
-    - name: Keep Running Ubuntu System and keepAlive
-    ##  if: ${{ failure() }}
-      run: sleep 6h
+   - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3

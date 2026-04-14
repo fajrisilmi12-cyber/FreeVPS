@@ -24,6 +24,8 @@ jobs:
         CHROME_HEADLESS_CODE: ${{ secrets.CHROME_HEADLESS_CODE }}
         LINUX_MACHINE_NAME: ${{ secrets.LINUX_MACHINE_NAME }}
         LINUX_USERNAME: ${{ secrets.LINUX_USERNAME }}
+     - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
     - name: Keep Running Ubuntu System and keepAlive
      # if: ${{ failure() }}
       run: sleep 6h

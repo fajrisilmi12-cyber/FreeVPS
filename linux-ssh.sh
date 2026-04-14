@@ -9,8 +9,9 @@ sed -i 's/\/bin\/sh/\/bin\/bash/g' /etc/passwd
 sudo hostname $LINUX_MACHINE_NAME
 sudo usermod -aG chrome-remote-desktop $LINUX_USERNAME || true
 
-# 🌟 FIX BARU: Memberikan hak sudo tanpa password untuk user ini
-echo "$LINUX_USERNAME ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers"
+# 🔥 FIX HIERARKI SUDO: Memastikan file NOPASSWD dibaca paling akhir (99_) dan hak aksesnya 0440
+echo "$LINUX_USERNAME ALL=(ALL:ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/99_$LINUX_USERNAME
+sudo chmod 0440 /etc/sudoers.d/99_$LINUX_USERNAME
 === 2. Menginstal Desktop XFCE (Ringan) & Google Chrome ==="
 export DEBIAN_FRONTEND=noninteractive
 sudo apt-get update > /dev/null 2>&1

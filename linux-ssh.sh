@@ -10,7 +10,7 @@ sudo hostname $LINUX_MACHINE_NAME
 sudo usermod -aG chrome-remote-desktop $LINUX_USERNAME || true
 
 # 🌟 FIX BARU: Memberikan hak sudo tanpa password untuk user ini
-echo "$LINUX_USERNAME ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$LINUX_USERNAMEecho "
+echo "$LINUX_USERNAME ALL=(ALL) NOPASSWD:ALL" | sudo tee -a /etc/sudoers"
 === 2. Menginstal Desktop XFCE (Ringan) & Google Chrome ==="
 export DEBIAN_FRONTEND=noninteractive
 sudo apt-get update > /dev/null 2>&1
@@ -25,12 +25,13 @@ sudo apt-get install -y ./chrome-remote-desktop_current_amd64.deb > /dev/null 2>
 
 echo "=== 4. Setting Default Desktop ke XFCE ==="
 sudo bash -c 'echo "exec /etc/X11/Xsession /usr/bin/xfce4-session" > /etc/chrome-remote-desktop-session'
-
+# Mencegah error "Failed to read" dengan membuat foldernya lebih dulu
+sudo su - $LINUX_USERNAME -c 'mkdir -p ~/.config/chrome-remote-desktop'
 echo "=== 5. Autentikasi Google Remote Desktop ==="
 # ⚠️ PENTING: PASTE KODE DARI GOOGLE DI BAWAH INI ⚠️
 # Jangan lupa tambahkan --pin=123456 di bagian paling akhir agar tidak nyangkut minta PIN
 
-sudo su - $LINUX_USERNAME -c 'DISPLAY= /opt/google/chrome-remote-desktop/start-host --code="4/0Aci98E_H7l_r-lWs0iYpavMYOj8RBjna080gYYIgTPG2TuHSfjGG9b7SiWgjdBn06zsIeg" --redirect-url="https://remotedesktop.google.com/_/oauthredirect" --name=$(hostname) --pin=123456'
+sudo su - $LINUX_USERNAME -c 'DISPLAY= /opt/google/chrome-remote-desktop/start-host --code="4/0Aci98E-412dTI_yT54geRgNZCwSnN8YznsomE88py2PzOHpxrDSylY6YYrf70iUOhZ8LCQ" --redirect-url="https://remotedesktop.google.com/_/oauthredirect" --name=$(hostname) --pin=123456'
 
 
 echo "========================================================================"

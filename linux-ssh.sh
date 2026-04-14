@@ -30,7 +30,7 @@ echo "=== 5. Autentikasi Google Remote Desktop ==="
 # ⚠️ PENTING: PASTE KODE DARI GOOGLE DI BAWAH INI ⚠️
 # Jangan lupa tambahkan --pin=123456 di bagian paling akhir agar tidak nyangkut minta PIN
 
-sudo su - $LINUX_USERNAME -c 'DISPLAY= /opt/google/chrome-remote-desktop/start-host --code="4/0Aci98E-8zaaFi_FFzBvYSQKlhgqioFyg9mHgbBfYM2jXH2LJa6bjQto3MA3sMUgE0Kmodw" --redirect-url="https://remotedesktop.google.com/_/oauthredirect" --name=$(hostname) --pin=123456'
+sudo su - $LINUX_USERNAME -c 'DISPLAY= /opt/google/chrome-remote-desktop/start-host --code="4/0Aci98E_H7l_r-lWs0iYpavMYOj8RBjna080gYYIgTPG2TuHSfjGG9b7SiWgjdBn06zsIeg" --redirect-url="https://remotedesktop.google.com/_/oauthredirect" --name=$(hostname) --pin=123456'
 
 
 echo "========================================================================"

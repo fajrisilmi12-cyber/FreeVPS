@@ -7,7 +7,11 @@ sudo adduser $LINUX_USERNAME sudo
 echo "$LINUX_USERNAME:$LINUX_USER_PASSWORD" | sudo chpasswd
 sed -i 's/\/bin\/sh/\/bin\/bash/g' /etc/passwd
 sudo hostname $LINUX_MACHINE_NAME
-echo "=== 2. Menginstal Desktop XFCE (Ringan) & Google Chrome ==="
+sudo usermod -aG chrome-remote-desktop $LINUX_USERNAME || true
+
+# 🌟 FIX BARU: Memberikan hak sudo tanpa password untuk user ini
+echo "$LINUX_USERNAME ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$LINUX_USERNAMEecho "
+=== 2. Menginstal Desktop XFCE (Ringan) & Google Chrome ==="
 export DEBIAN_FRONTEND=noninteractive
 sudo apt-get update > /dev/null 2>&1
 sudo apt-get install -y xfce4 xfce4-terminal dbus-x11 wget > /dev/null 2>&1
